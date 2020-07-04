@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HUSC CHAT</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+  <div style="margin: auto; width: 1024px; margin-top: 150px;">
+    <form action="/" method="POST">
+      <div class="form-group">
+        <label for="input-text">Input</label>
+        <input name="text" type="text" class="form-control" id="input-text" autofocus>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="form-group form-check">
+          <button id="jq-refine-stopwords" type="submit" class="btn btn-primary mx-1">Refine Stopwords</button>
+          <button id="jq-word-segmentation" type="submit" class="btn btn-primary mx-1">Word Segmentation</button>
+          <button id="jq-pos-tagging" type="submit" class="btn btn-primary mx-1">POS Tagging</button>
+          <button id="jq-chunking" type="submit" class="btn btn-primary mx-1">Chunking</button>
+          <button id="jq-ner" type="submit" class="btn btn-primary mx-1">NER</button>
+          <!-- <button id="jq-tfidf" type="submit" class="btn btn-primary mx-1">TF-IDF</button> -->
+          <!-- <button id="jq-classify" type="submit" class="btn btn-primary mx-1">Bayes Classify</button> -->
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="useRefineStopword">
+          <label class="form-check-label" for="useRefineStopword">Use Refine Stopwords</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("form").submit(function (e) {
+        e.preventDefault()
+      })
+
+      $("#jq-refine-stopwords").click(function (e) {
+        e.preventDefault();
+        const data = {
+          text: $("#input-text").val()
+        }
+        $.post("/refine-stopwords", data, callback)
+      })
+      $("#jq-word-segmentation").click(function (e) {
+        e.preventDefault();
+        const data = {
+          text: $("#input-text").val(),
+          useRefineStopword: $('#useRefineStopword').prop("checked")
+        }
+        $.post("/word-segmentation", data, callback)
+      })
+      $("#jq-pos-tagging").click(function (e) {
+        e.preventDefault();
+        const data = {
+          text: $("#input-text").val(),
+          useRefineStopword: $('#useRefineStopword').prop("checked")
+        }
+        $.post("/pos-tagging", data, callback)
+      })
+      $("#jq-chunking").click(function (e) {
+        e.preventDefault();
+        const data = {
+          text: $("#input-text").val(),
+          useRefineStopword: $('#useRefineStopword').prop("checked")
+        }
+        $.post("/chunking", data, callback)
+      })
+      $("#jq-ner").click(function (e) {
+        e.preventDefault();
+        const data = {
+          text: $("#input-text").val(),
+          useRefineStopword: $('#useRefineStopword').prop("checked")
+        }
+        $.post("/ner", data, callback)
+      })
+      // $("#jq-tfidf").click(function (e) {
+      //   e.preventDefault();
+      //   $.post("/tfidf",
+      //     {
+      //       text: $("#input-text").val(),
+      //       useRefineStopword: $('#useRefineStopword').prop("checked")
+      //     }, callback)
+      // })
+      // $("#jq-classify").click(function (e) {
+      //   e.preventDefault();
+      //   $.post("/classify",
+      //     {
+      //       text: $("#input-text").val(),
+      //       useRefineStopword: $('#useRefineStopword').prop("checked")
+      //     }, callback)
+      // })
+
+    });
+
+    function callback(res, statusCode) {
+      if (statusCode === 200)
+        console.log(res);
+      else
+        console.error(res)
+    }
+
+  </script>
+
+</body>
+
+</html>
