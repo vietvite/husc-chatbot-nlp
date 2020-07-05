@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.ket_qua_hoc_tap = {
   intent: 'ket_qua_hoc_tap',
   patterns: [
     'Điểm trung bình hệ 4 kỳ này là bao nhiều?',
@@ -20,6 +20,18 @@ module.exports = {
     'Kết quả học tập bao nhiêu là được bằng giỏi?',
     'Kết quả học tập bao nhiêu là có học bổng?',
     'Kết quả học tập bao nhiêu có thể làm khóa luận tốt nghiệp?',
+  ],
+  responses: [],
+}
+
+module.exports.ket_qua_ren_luyen = {
+  intent: 'ket_qua_ren_luyen',
+  patterns: [
+    'Điểm rèn luyện để làm gì?',
+    'Sinh viên năm 5 có cần điểm rèn luyện không?',
+    'Vì sao điểm rèn luyện kỳ này của tôi chưa có?',
+    'Hạn cuối nộp phiếu rèn luyện?',
+    'Nộp phiếu rèn luyện ở đâu?',
   ],
   responses: [],
 }

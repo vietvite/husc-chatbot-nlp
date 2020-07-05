@@ -74,12 +74,12 @@ const lib = {
       var classifier = new vntk.BayesClassifier();
 
       const intents = [
-        require('./intents/chao_hoi'),
-        require('./intents/ket_thuc'),
-        require('./intents/dang_ky_tin_chi'),
-        require('./intents/huy_tin_chi'),
-        require('./intents/ket_qua_hoc_tap'),
-        require('./intents/ket_qua_ren_luyen'),
+        require('./intents/chao_hoi').mo_dau,
+        require('./intents/chao_hoi').ket_thuc,
+        require('./intents/tin_chi').dang_ky_tin_chi,
+        require('./intents/tin_chi').huy_tin_chi,
+        require('./intents/ket_qua').ket_qua_hoc_tap,
+        require('./intents/ket_qua').ket_qua_ren_luyen,
         require('./intents/hoc_bong'),
         require('./intents/lich_hoc'),
         require('./intents/tai_khoan_sinh_vien'),
